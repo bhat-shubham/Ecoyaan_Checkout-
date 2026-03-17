@@ -1,11 +1,9 @@
 import type { CartData } from "@/types/checkout";
 import CartClient from "./CartClient";
+import { mockCartData } from "@/lib/mockData";
 
 export default async function CartPage() {
-  const res = await fetch("http://localhost:3000/api/cart", {
-    cache: "no-store",
-  });
-  const data: CartData = await res.json();
+  const data: CartData = mockCartData;
 
   return <CartClient initialCartData={data} />;
 }
