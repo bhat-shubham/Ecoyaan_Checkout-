@@ -125,29 +125,29 @@ export default function ShippingPage() {
   }
 
   const inputClasses = (field: keyof FormErrors) =>
-    `w-full rounded-lg border px-4 py-3 text-sm text-gray-900 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 ${
+    `w-full h-12 rounded-xl border px-4 text-sm text-gray-900 transition-all focus:outline-none focus:ring-2 focus:ring-green-700 focus:border-green-700 ${
       errors[field]
         ? "border-red-400 bg-red-50"
-        : "border-gray-300 bg-white"
+        : "border-neutral-300 bg-white"
     }`;
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4 animate-in fade-in duration-500">
+    <div className="min-h-screen py-8 px-4 animate-in fade-in duration-500">
       <div className="mx-auto max-w-2xl">
         <button
           onClick={() => router.back()}
-          className="mb-6 flex align-middle items-center gap-1 text-sm font-medium text-emerald-600 hover:text-emerald-700 cursor-pointer transition-all duration-300 hover:gap-2"
+          className="mb-6 flex align-middle items-center gap-1 border border-neutral-300 text-neutral-600 hover:border-neutral-400 rounded-xl h-12 px-5 bg-white transition-all duration-300 cursor-pointer text-sm font-medium"
         >
           <FaArrowLeftLong /> Back
         </button>
 
-        <h1 className="mb-8 text-3xl font-bold text-emerald-500 animate-in slide-in-from-left duration-500">
+        <h1 className="mb-8 text-3xl font-[Playfair_Display] font-bold text-[#3d6b4f] animate-in slide-in-from-left duration-500">
           Shipping Details
         </h1>
 
         <form
           onSubmit={handleSubmit}
-          className="rounded-xl bg-white p-6 shadow-sm animate-in slide-in-from-left duration-500 delay-100"
+          className="rounded-2xl border border-neutral-200 bg-white p-6 md:p-8 shadow-sm animate-in slide-in-from-left duration-500 delay-100"
           noValidate
         >
           <div className="space-y-5">
@@ -285,7 +285,7 @@ export default function ShippingPage() {
 
           <button
             type="submit"
-            className="mt-8 w-full rounded-lg bg-emerald-600 py-3 text-base font-semibold text-white transition-all duration-300 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 cursor-pointer active:scale-95 hover:scale-102 animate-in slide-in-from-left duration-500 delay-450"
+            className="mt-8 w-full bg-[#3d6b4f] hover:bg-[#2f5540] text-white font-medium rounded-xl h-12 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2 cursor-pointer active:scale-95 animate-in slide-in-from-left duration-500 delay-450"
           >
             Continue to Payment
           </button>
