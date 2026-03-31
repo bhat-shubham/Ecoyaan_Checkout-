@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useCheckout } from "@/context/CheckoutContext";
 import type { CartData } from "@/types/checkout";
 import Image from "next/image";
-import { FaArrowRightToBracket, FaCartShopping } from "react-icons/fa6";
+import { FaCartShopping } from "react-icons/fa6";
 
 
 export default function CartClient({
@@ -36,7 +36,7 @@ export default function CartClient({
   };
 
   return (
-    <div className="min-h-screen py-8 px-4 animate-in fade-in duration-500">
+    <div className="min-h-screen py-8 px-4 pb-24 animate-in fade-in duration-500">
       <div className="mx-auto max-w-2xl">
         <div className="flex items-center my-2 gap-2 align-middle animate-in slide-in-from-left duration-500">
           <FaCartShopping className="h-6 w-6 text-[#3d6b4f]" />
@@ -104,11 +104,24 @@ export default function CartClient({
               </div>
             </div>
           </div>
+        </div>
+      </div>
 
+      {/* Sticky bottom action bar */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-neutral-200 shadow-[0_-4px_16px_rgba(0,0,0,0.06)] px-4 py-3 md:px-8">
+        <div className="flex items-center gap-3 max-w-3xl mx-auto">
+          {/* Invisible back button to keep layout stable */}
+          <button
+            className="flex-1 border border-neutral-300 text-neutral-600 hover:border-neutral-400 rounded-xl h-12 bg-white font-medium transition-all invisible"
+            aria-hidden="true"
+            tabIndex={-1}
+          >
+            Back
+          </button>
           <button
             onClick={handleProceed}
             disabled={isProcessing}
-            className="flex items-center justify-center gap-1.5 mt-6 w-full bg-[#3d6b4f] hover:bg-[#2f5540] text-white font-medium rounded-xl h-12 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2 active:scale-95 cursor-pointer"
+            className="flex-[2] flex items-center justify-center gap-1.5 bg-[#3d6b4f] hover:bg-[#2f5540] text-white rounded-xl h-12 font-medium transition-all disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
           >
             {isProcessing ? (
               <>
@@ -116,9 +129,7 @@ export default function CartClient({
                 <span>Processing...</span>
               </>
             ) : (
-              <>
-                Proceed to Checkout <FaArrowRightToBracket />
-              </>
+              "Proceed to Checkout →"
             )}
           </button>
         </div>

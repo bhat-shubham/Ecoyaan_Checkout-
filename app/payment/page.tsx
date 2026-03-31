@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCheckout } from "@/context/CheckoutContext";
-import { FaArrowLeftLong } from "react-icons/fa6";
 
 export default function PaymentPage() {
   const { cartData, shippingAddress } = useCheckout();
@@ -37,15 +36,8 @@ export default function PaymentPage() {
   }
 
   return (
-    <div className="min-h-screen py-8 px-4 animate-in fade-in duration-500">
+    <div className="min-h-screen py-8 px-4 pb-24 animate-in fade-in duration-500">
       <div className="mx-auto max-w-2xl">
-        <button
-          onClick={() => router.back()}
-          className="mb-6 flex items-center gap-1 border border-neutral-300 text-neutral-600 hover:border-neutral-400 rounded-xl h-12 px-5 bg-white transition-all duration-300 cursor-pointer text-sm font-medium"
-        >
-          <FaArrowLeftLong className="h-4 w-4" /> Back
-        </button>
-
         <h1 className="mb-8 text-3xl font-[Playfair_Display] font-bold text-[#3d6b4f] animate-in slide-in-from-left duration-500">
           Payment
         </h1>
@@ -116,21 +108,32 @@ export default function PaymentPage() {
             </p>
           </div>
         </div>
+      </div>
 
-        <button
-          onClick={handlePay}
-          disabled={loading}
-          className="w-full cursor-pointer bg-[#3d6b4f] hover:bg-[#2f5540] text-white font-medium rounded-xl h-12 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed active:scale-95 animate-in slide-in-from-left duration-500 delay-300 flex items-center justify-center gap-2"
-        >
-          {loading ? (
-            <>
-              <div className="animate-spin inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full" />
-              <span>Processing Payment…</span>
-            </>
-          ) : (
-            "Pay Securely"
-          )}
-        </button>
+      {/* Sticky bottom action bar */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-neutral-200 shadow-[0_-4px_16px_rgba(0,0,0,0.06)] px-4 py-3 md:px-8">
+        <div className="flex items-center gap-3 max-w-3xl mx-auto">
+          <button
+            onClick={() => router.back()}
+            className="flex-1 border border-neutral-300 text-neutral-600 hover:border-neutral-400 rounded-xl h-12 bg-white font-medium transition-all cursor-pointer"
+          >
+            ← Back
+          </button>
+          <button
+            onClick={handlePay}
+            disabled={loading}
+            className="flex-[2] flex items-center justify-center gap-2 bg-[#3d6b4f] hover:bg-[#2f5540] text-white rounded-xl h-12 font-medium transition-all disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+          >
+            {loading ? (
+              <>
+                <div className="animate-spin inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full" />
+                <span>Processing Payment…</span>
+              </>
+            ) : (
+              `Pay ₹${grandTotal.toLocaleString("en-IN")} Securely`
+            )}
+          </button>
+        </div>
       </div>
     </div>
   );

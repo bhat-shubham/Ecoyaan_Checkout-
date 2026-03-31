@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCheckout } from "@/context/CheckoutContext";
-import { FaArrowLeftLong } from "react-icons/fa6";
 
 const INDIAN_STATES = [
   "Andhra Pradesh",
@@ -117,8 +116,7 @@ export default function ShippingPage() {
     return Object.keys(newErrors).length === 0;
   }
 
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
+  function handleSubmit() {
     if (validate()) {
       router.push("/payment");
     }
@@ -132,24 +130,13 @@ export default function ShippingPage() {
     }`;
 
   return (
-    <div className="min-h-screen py-8 px-4 animate-in fade-in duration-500">
+    <div className="min-h-screen py-8 px-4 pb-24 animate-in fade-in duration-500">
       <div className="mx-auto max-w-2xl">
-        <button
-          onClick={() => router.back()}
-          className="mb-6 flex align-middle items-center gap-1 border border-neutral-300 text-neutral-600 hover:border-neutral-400 rounded-xl h-12 px-5 bg-white transition-all duration-300 cursor-pointer text-sm font-medium"
-        >
-          <FaArrowLeftLong /> Back
-        </button>
-
         <h1 className="mb-8 text-3xl font-[Playfair_Display] font-bold text-[#3d6b4f] animate-in slide-in-from-left duration-500">
           Shipping Details
         </h1>
 
-        <form
-          onSubmit={handleSubmit}
-          className="rounded-2xl border border-neutral-200 bg-white p-6 md:p-8 shadow-sm animate-in slide-in-from-left duration-500 delay-100"
-          noValidate
-        >
+        <div className="rounded-2xl border border-neutral-200 bg-white p-6 md:p-8 shadow-sm animate-in slide-in-from-left duration-500 delay-100">
           <div className="space-y-5">
             <div className="animate-in slide-in-from-left duration-500 delay-150">
               <label
@@ -282,14 +269,25 @@ export default function ShippingPage() {
               )}
             </div>
           </div>
+        </div>
+      </div>
 
+      {/* Sticky bottom action bar */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-neutral-200 shadow-[0_-4px_16px_rgba(0,0,0,0.06)] px-4 py-3 md:px-8">
+        <div className="flex items-center gap-3 max-w-3xl mx-auto">
           <button
-            type="submit"
-            className="mt-8 w-full bg-[#3d6b4f] hover:bg-[#2f5540] text-white font-medium rounded-xl h-12 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2 cursor-pointer active:scale-95 animate-in slide-in-from-left duration-500 delay-450"
+            onClick={() => router.back()}
+            className="flex-1 border border-neutral-300 text-neutral-600 hover:border-neutral-400 rounded-xl h-12 bg-white font-medium transition-all cursor-pointer"
           >
-            Continue to Payment
+            ← Back
           </button>
-        </form>
+          <button
+            onClick={handleSubmit}
+            className="flex-[2] bg-[#3d6b4f] hover:bg-[#2f5540] text-white rounded-xl h-12 font-medium transition-all cursor-pointer"
+          >
+            Continue to Payment →
+          </button>
+        </div>
       </div>
     </div>
   );
