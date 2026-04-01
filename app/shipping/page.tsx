@@ -168,10 +168,9 @@ export default function ShippingPage() {
   }
 
   const inputClasses = (field: keyof FormErrors) =>
-    `w-full h-12 rounded-xl border px-4 text-sm text-gray-900 transition-all focus:outline-none focus:ring-2 focus:ring-green-700 focus:border-green-700 ${
-      errors[field]
-        ? "border-red-400 bg-red-50"
-        : "border-neutral-300 bg-white"
+    `w-full h-12 rounded-xl border px-4 text-sm text-gray-900 transition-all focus:outline-none focus:ring-2 focus:ring-green-700 focus:border-green-700 ${errors[field]
+      ? "border-red-400 bg-red-50"
+      : "border-neutral-300 bg-white"
     }`;
 
   return (
@@ -181,7 +180,6 @@ export default function ShippingPage() {
           Shipping Details
         </h1>
 
-        {/* Saved address cards */}
         {hasSavedAddresses && (
           <div className="mb-6 space-y-3 animate-in slide-in-from-left duration-500 delay-100">
             {savedAddresses.map((addr) => (
@@ -192,11 +190,10 @@ export default function ShippingPage() {
                   setSelectedCardId(addr.id);
                   setShowForm(false);
                 }}
-                className={`relative w-full text-left rounded-2xl border bg-white p-4 md:p-5 shadow-sm transition-all cursor-pointer ${
-                  selectedCardId === addr.id
+                className={`relative w-full text-left rounded-2xl border bg-white p-4 md:p-5 shadow-sm transition-all cursor-pointer ${selectedCardId === addr.id
                     ? "border-[#3d6b4f] ring-1 ring-[#3d6b4f]"
                     : "border-neutral-200 hover:border-neutral-300"
-                }`}
+                  }`}
               >
                 <div className="pr-8">
                   <p className="font-medium text-gray-900">{addr.fullName}</p>
@@ -225,7 +222,6 @@ export default function ShippingPage() {
               </button>
             ))}
 
-            {/* Toggle form button */}
             {!showForm && (
               <button
                 type="button"
@@ -245,6 +241,7 @@ export default function ShippingPage() {
 
         {/* Address form */}
         {formVisible && (
+          <div className={`${hasSavedAddresses && showForm ? "mt-4 pt-4 border-t border-neutral-200" : ""}`}>
           <div className="rounded-2xl border border-neutral-200 bg-white p-6 md:p-8 shadow-sm animate-in slide-in-from-left duration-500 delay-100">
             <div className="space-y-5">
               <div className="animate-in slide-in-from-left duration-500 delay-150">
@@ -378,6 +375,7 @@ export default function ShippingPage() {
                 )}
               </div>
             </div>
+          </div>
           </div>
         )}
       </div>
