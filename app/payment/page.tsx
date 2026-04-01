@@ -110,7 +110,6 @@ export default function PaymentPage() {
         </div>
       </div>
 
-      {/* Sticky bottom action bar */}
       <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-neutral-200 shadow-[0_-4px_16px_rgba(0,0,0,0.06)] px-4 py-3 md:px-8">
         <div className="flex items-center gap-3 max-w-3xl mx-auto">
           <button
