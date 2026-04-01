@@ -168,20 +168,20 @@ export default function ShippingPage() {
   }
 
   const inputClasses = (field: keyof FormErrors) =>
-    `w-full h-12 rounded-xl border px-4 text-sm text-gray-900 transition-all focus:outline-none focus:ring-2 focus:ring-green-700 focus:border-green-700 ${errors[field]
+    `w-full h-11 sm:h-12 rounded-xl border px-3 sm:px-4 text-sm text-gray-900 transition-all focus:outline-none focus:ring-2 focus:ring-green-700 focus:border-green-700 ${errors[field]
       ? "border-red-400 bg-red-50"
       : "border-neutral-300 bg-white"
     }`;
 
   return (
-    <div className="min-h-screen py-8 px-4 pb-24 animate-in fade-in duration-500">
+    <div className="min-h-screen py-5 sm:py-8 px-3 sm:px-4 pb-28 sm:pb-24 animate-in fade-in duration-500">
       <div className="mx-auto max-w-2xl">
-        <h1 className="mb-8 text-3xl font-[Playfair_Display] font-bold text-[#3d6b4f] animate-in slide-in-from-left duration-500">
+        <h1 className="mb-5 sm:mb-8 text-2xl sm:text-3xl font-[Playfair_Display] font-bold text-[#3d6b4f] animate-in slide-in-from-left duration-500">
           Shipping Details
         </h1>
 
         {hasSavedAddresses && (
-          <div className="mb-6 space-y-3 animate-in slide-in-from-left duration-500 delay-100">
+          <div className="mb-4 sm:mb-6 space-y-2.5 sm:space-y-3 animate-in slide-in-from-left duration-500 delay-100">
             {savedAddresses.map((addr) => (
               <button
                 key={addr.id}
@@ -190,14 +190,14 @@ export default function ShippingPage() {
                   setSelectedCardId(addr.id);
                   setShowForm(false);
                 }}
-                className={`relative w-full text-left rounded-2xl border bg-white p-4 md:p-5 shadow-sm transition-all cursor-pointer ${selectedCardId === addr.id
+                className={`relative w-full text-left rounded-2xl border bg-white p-3.5 sm:p-4 md:p-5 shadow-sm transition-all cursor-pointer ${selectedCardId === addr.id
                     ? "border-[#3d6b4f] ring-1 ring-[#3d6b4f]"
                     : "border-neutral-200 hover:border-neutral-300"
                   }`}
               >
                 <div className="pr-8">
-                  <p className="font-medium text-gray-900">{addr.fullName}</p>
-                  <p className="mt-0.5 text-sm text-gray-500">
+                  <p className="font-medium text-gray-900 text-sm sm:text-base">{addr.fullName}</p>
+                  <p className="mt-0.5 text-xs sm:text-sm text-gray-500">
                     {addr.city}, {addr.state} – {addr.pinCode}
                   </p>
                 </div>
@@ -214,7 +214,7 @@ export default function ShippingPage() {
                       handleDeleteAddress(addr.id);
                     }
                   }}
-                  className="absolute top-3 right-3 flex h-6 w-6 items-center justify-center rounded-full text-neutral-400 hover:bg-neutral-100 hover:text-neutral-600 transition-colors cursor-pointer text-sm"
+                  className="absolute top-2.5 sm:top-3 right-2.5 sm:right-3 flex h-7 w-7 sm:h-6 sm:w-6 items-center justify-center rounded-full text-neutral-400 hover:bg-neutral-100 hover:text-neutral-600 transition-colors cursor-pointer text-sm"
                   aria-label={`Delete address for ${addr.fullName}`}
                 >
                   ✕
@@ -241,13 +241,14 @@ export default function ShippingPage() {
 
         {/* Address form */}
         {formVisible && (
-          <div className={`${hasSavedAddresses && showForm ? "mt-4 pt-4 border-t border-neutral-200" : ""}`}>
-          <div className="rounded-2xl border border-neutral-200 bg-white p-6 md:p-8 shadow-sm animate-in slide-in-from-left duration-500 delay-100">
-            <div className="space-y-5">
+          <div className={`${hasSavedAddresses && showForm ? "mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-neutral-200" : ""}`}>
+          <div className="rounded-2xl border border-neutral-200 bg-white p-4 sm:p-6 md:p-8 shadow-sm animate-in slide-in-from-left duration-500 delay-100">
+            <div className="space-y-4 sm:space-y-5">
+              {/* PIN Code + City row on mobile */}
               <div className="animate-in slide-in-from-left duration-500 delay-150">
                 <label
                   htmlFor="fullName"
-                  className="mb-1.5 block text-sm font-medium text-gray-700"
+                  className="mb-1 sm:mb-1.5 block text-sm font-medium text-gray-700"
                 >
                   Full Name
                 </label>
@@ -261,14 +262,14 @@ export default function ShippingPage() {
                   placeholder="John Doe"
                 />
                 {errors.fullName && (
-                  <p className="mt-1.5 text-sm text-red-600 animate-in slide-in-from-left">{errors.fullName}</p>
+                  <p className="mt-1 sm:mt-1.5 text-xs sm:text-sm text-red-600 animate-in slide-in-from-left">{errors.fullName}</p>
                 )}
               </div>
 
               <div className="animate-in slide-in-from-left duration-500 delay-200">
                 <label
                   htmlFor="email"
-                  className="mb-1.5 block text-sm font-medium text-gray-700"
+                  className="mb-1 sm:mb-1.5 block text-sm font-medium text-gray-700"
                 >
                   Email
                 </label>
@@ -282,14 +283,14 @@ export default function ShippingPage() {
                   placeholder="john@example.com"
                 />
                 {errors.email && (
-                  <p className="mt-1.5 text-sm text-red-600 animate-in slide-in-from-left">{errors.email}</p>
+                  <p className="mt-1 sm:mt-1.5 text-xs sm:text-sm text-red-600 animate-in slide-in-from-left">{errors.email}</p>
                 )}
               </div>
 
               <div className="animate-in slide-in-from-left duration-500 delay-250">
                 <label
                   htmlFor="phone"
-                  className="mb-1.5 block text-sm font-medium text-gray-700"
+                  className="mb-1 sm:mb-1.5 block text-sm font-medium text-gray-700"
                 >
                   Phone
                 </label>
@@ -303,56 +304,60 @@ export default function ShippingPage() {
                   placeholder="9876543210"
                 />
                 {errors.phone && (
-                  <p className="mt-1.5 text-sm text-red-600 animate-in slide-in-from-left">{errors.phone}</p>
+                  <p className="mt-1 sm:mt-1.5 text-xs sm:text-sm text-red-600 animate-in slide-in-from-left">{errors.phone}</p>
                 )}
               </div>
 
-              <div className="animate-in slide-in-from-left duration-500 delay-300">
-                <label
-                  htmlFor="pinCode"
-                  className="mb-1.5 block text-sm font-medium text-gray-700"
-                >
-                  PIN Code
-                </label>
-                <input
-                  id="pinCode"
-                  name="pinCode"
-                  type="text"
-                  value={formData.pinCode}
-                  onChange={handleChange}
-                  className={`${inputClasses("pinCode")} transition-all duration-300`}
-                  placeholder="560001"
-                />
-                {errors.pinCode && (
-                  <p className="mt-1.5 text-sm text-red-600 animate-in slide-in-from-left">{errors.pinCode}</p>
-                )}
-              </div>
+              {/* PIN Code and City side by side on all screens */}
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 animate-in slide-in-from-left duration-500 delay-300">
+                <div>
+                  <label
+                    htmlFor="pinCode"
+                    className="mb-1 sm:mb-1.5 block text-sm font-medium text-gray-700"
+                  >
+                    PIN Code
+                  </label>
+                  <input
+                    id="pinCode"
+                    name="pinCode"
+                    type="text"
+                    inputMode="numeric"
+                    value={formData.pinCode}
+                    onChange={handleChange}
+                    className={`${inputClasses("pinCode")} transition-all duration-300`}
+                    placeholder="560001"
+                  />
+                  {errors.pinCode && (
+                    <p className="mt-1 sm:mt-1.5 text-xs sm:text-sm text-red-600 animate-in slide-in-from-left">{errors.pinCode}</p>
+                  )}
+                </div>
 
-              <div className="animate-in slide-in-from-left duration-500 delay-350">
-                <label
-                  htmlFor="city"
-                  className="mb-1.5 block text-sm font-medium text-gray-700"
-                >
-                  City
-                </label>
-                <input
-                  id="city"
-                  name="city"
-                  type="text"
-                  value={formData.city}
-                  onChange={handleChange}
-                  className={`${inputClasses("city")} transition-all duration-300`}
-                  placeholder="Bangalore"
-                />
-                {errors.city && (
-                  <p className="mt-1.5 text-sm text-red-600 animate-in slide-in-from-left">{errors.city}</p>
-                )}
+                <div>
+                  <label
+                    htmlFor="city"
+                    className="mb-1 sm:mb-1.5 block text-sm font-medium text-gray-700"
+                  >
+                    City
+                  </label>
+                  <input
+                    id="city"
+                    name="city"
+                    type="text"
+                    value={formData.city}
+                    onChange={handleChange}
+                    className={`${inputClasses("city")} transition-all duration-300`}
+                    placeholder="Bangalore"
+                  />
+                  {errors.city && (
+                    <p className="mt-1 sm:mt-1.5 text-xs sm:text-sm text-red-600 animate-in slide-in-from-left">{errors.city}</p>
+                  )}
+                </div>
               </div>
 
               <div className="animate-in slide-in-from-left duration-500 delay-400">
                 <label
                   htmlFor="state"
-                  className="mb-1.5 block text-sm font-medium text-gray-700"
+                  className="mb-1 sm:mb-1.5 block text-sm font-medium text-gray-700"
                 >
                   State
                 </label>
@@ -371,7 +376,7 @@ export default function ShippingPage() {
                   ))}
                 </select>
                 {errors.state && (
-                  <p className="mt-1.5 text-sm text-red-600 animate-in slide-in-from-left">{errors.state}</p>
+                  <p className="mt-1 sm:mt-1.5 text-xs sm:text-sm text-red-600 animate-in slide-in-from-left">{errors.state}</p>
                 )}
               </div>
             </div>
@@ -380,17 +385,17 @@ export default function ShippingPage() {
         )}
       </div>
 
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-neutral-200 shadow-[0_-4px_16px_rgba(0,0,0,0.06)] px-4 py-3 md:px-8">
-        <div className="flex items-center gap-3 max-w-3xl mx-auto">
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-neutral-200 shadow-[0_-4px_16px_rgba(0,0,0,0.06)] px-3 sm:px-4 py-2.5 sm:py-3 md:px-8">
+        <div className="flex items-center gap-2.5 sm:gap-3 max-w-3xl mx-auto">
           <button
             onClick={() => router.back()}
-            className="flex-1 border border-neutral-300 text-neutral-600 hover:border-neutral-400 rounded-xl h-12 bg-white font-medium transition-all cursor-pointer"
+            className="flex-1 sm:flex-1 border border-neutral-300 text-neutral-600 hover:border-neutral-400 rounded-xl h-11 sm:h-12 bg-white font-medium transition-all cursor-pointer text-sm sm:text-base"
           >
             ← Back
           </button>
           <button
             onClick={handleStickyAction}
-            className="flex-[2] bg-[#3d6b4f] hover:bg-[#2f5540] text-white rounded-xl h-12 font-medium transition-all cursor-pointer"
+            className="flex-[2] sm:flex-[2] bg-[#3d6b4f] hover:bg-[#2f5540] text-white rounded-xl h-11 sm:h-12 font-medium transition-all cursor-pointer text-sm sm:text-base"
           >
             Continue to Payment →
           </button>
